@@ -13,8 +13,8 @@ import jakarta.ws.rs.Produces
 import jakarta.ws.rs.core.MediaType
 import jakarta.ws.rs.core.Response
 import org.jboss.logging.Logger
-import org.jboss.resteasy.reactive.MultipartForm
-import org.jboss.resteasy.reactive.PartType
+import org.jboss.resteasy.reactive.RestForm
+import org.jboss.resteasy.reactive.multipart.FileUpload
 
 @Path("/api/documents")
 class DocumentResource {
@@ -28,14 +28,19 @@ class DocumentResource {
     @Path("/upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
-    fun uploadDocument(@MultipartForm form: DocumentUploadForm): Response {
-        logger.info("Received document upload request: ${form.fileName}")
+    fun uploadDocument(
+        @RestForm file: FileUpload,
+        @RestForm fileName: String?,
+        @RestForm mimeType: String?
+    ): Response {
+        logger.info("Received document upload request: $fileName")
 
         return try {
+            val fileData = file.uploadedFile().toFile().readBytes()
             val result = documentProcessingService.processDocument(
-                fileName = form.fileName ?: "unknown",
-                mimeType = form.mimeType ?: "application/octet-stream",
-                fileData = form.file
+                fileName = fileName ?: file.fileName(),
+                mimeType = mimeType ?: file.contentType() ?: "application/octet-stream",
+                fileData = fileData
             )
 
             Response.ok(result).build()
@@ -61,15 +66,4 @@ class DocumentResource {
                 .build()
         }
     }
-
-    data class DocumentUploadForm(
-        @PartType(MediaType.APPLICATION_OCTET_STREAM)
-        val file: ByteArray,
-        
-        @PartType(MediaType.TEXT_PLAIN)
-        val fileName: String?,
-        
-        @PartType(MediaType.TEXT_PLAIN)
-        val mimeType: String?
-    )
 }

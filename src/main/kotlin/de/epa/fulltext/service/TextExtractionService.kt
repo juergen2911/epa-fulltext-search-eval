@@ -35,7 +35,7 @@ class TextExtractionService {
                 SupportedMimeType.TEXT -> String(fileData, Charsets.UTF_8)
                 SupportedMimeType.XML, 
                 SupportedMimeType.FHIR_XML, 
-                SupportedMimeType.HL7_V3 -> extractTextWithTika(fileData, mimeType)
+                SupportedMimeType.HL7_V3 -> extractTextWithTika(fileData)
                 SupportedMimeType.JSON, 
                 SupportedMimeType.FHIR_JSON -> String(fileData, Charsets.UTF_8)
                 null -> throw DocumentProcessingException("Unsupported mime type: $mimeType")
@@ -109,7 +109,7 @@ class TextExtractionService {
         return text
     }
 
-    private fun extractTextWithTika(fileData: ByteArray, mimeType: String): String {
+    private fun extractTextWithTika(fileData: ByteArray): String {
         return tika.parseToString(ByteArrayInputStream(fileData))
     }
 }

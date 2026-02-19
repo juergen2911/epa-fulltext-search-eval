@@ -128,9 +128,7 @@ class IndexingService {
         
         indexes.forEach { indexDir ->
             try {
-                val reader = DirectoryReader.open(indexDir)
-                writer.addIndexes(reader)
-                reader.close()
+                writer.addIndexes(indexDir)
             } catch (e: Exception) {
                 logger.warn("Error merging index", e)
             }

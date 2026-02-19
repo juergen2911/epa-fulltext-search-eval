@@ -71,7 +71,7 @@ class SearchService {
             val topDocs = searcher.search(query, maxResults)
             
             val results = topDocs.scoreDocs.map { scoreDoc ->
-                val doc = searcher.doc(scoreDoc.doc)
+                val doc = searcher.storedFields().document(scoreDoc.doc)
                 val content = doc.get("content") ?: ""
                 val snippet = if (content.length > 200) {
                     content.substring(0, 200) + "..."
