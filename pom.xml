@@ -132,11 +132,6 @@
       <artifactId>kotlinx-coroutines-jdk8</artifactId>
       <version>1.7.3</version>
     </dependency>
-    <!-- Multipart support -->
-    <dependency>
-      <groupId>org.jboss.resteasy</groupId>
-      <artifactId>resteasy-multipart-provider</artifactId>
-    </dependency>
   </dependencies>
   <build>
     <sourceDirectory>src/main/kotlin</sourceDirectory>
