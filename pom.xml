@@ -18,8 +18,9 @@
     <surefire-plugin.version>3.1.2</surefire-plugin.version>
     <lucene.version>9.9.1</lucene.version>
     <pdfbox.version>3.0.1</pdfbox.version>
-    <tika.version>2.9.1</tika.version>
+    <tika.version>3.2.2</tika.version>
     <tesseract.version>5.3.1-1.5.9</tesseract.version>
+    <minio.version>8.6.0</minio.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -91,7 +92,7 @@
     <dependency>
       <groupId>io.minio</groupId>
       <artifactId>minio</artifactId>
-      <version>8.5.7</version>
+      <version>${minio.version}</version>
     </dependency>
     <!-- PDF processing -->
     <dependency>
