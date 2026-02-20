@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+  <title>Medical Test Results</title>
+  <content>
+    This is an XML document containing medical test results.
+    Patient: John Doe
+    Test Type: Blood Test
+    Results: All parameters within normal range
+    Notes: Patient shows good health indicators
+  </content>
+  <metadata>
+    <author>Dr. Jane Smith</author>
+    <date>2024-01-15</date>
+  </metadata>
+</document>

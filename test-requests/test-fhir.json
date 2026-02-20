@@ -1,0 +1,26 @@
+{
+  "resourceType": "Patient",
+  "id": "example-patient-001",
+  "name": [
+    {
+      "use": "official",
+      "family": "Smith",
+      "given": ["John", "Robert"]
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1974-12-25",
+  "address": [
+    {
+      "use": "home",
+      "line": ["123 Main Street"],
+      "city": "Springfield",
+      "postalCode": "12345",
+      "country": "USA"
+    }
+  ],
+  "text": {
+    "status": "generated",
+    "div": "This is a sample FHIR patient resource for testing the fulltext search capabilities"
+  }
+}

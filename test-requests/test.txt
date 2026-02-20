@@ -1,0 +1,4 @@
+This is a sample text document for testing the fulltext search service.
+It contains some sample content that can be indexed and searched.
+The document discusses various topics including healthcare, medical records, and electronic patient data.
+This content will be extracted and indexed using Apache Lucene for full-text search capabilities.
