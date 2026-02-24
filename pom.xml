@@ -32,6 +32,13 @@
         <artifactId>okhttp</artifactId>
         <version>${okhttp.version}</version>
       </dependency>
+      <!-- okhttp 5.x uses Kotlin Multiplatform; Maven ignores Gradle metadata so the
+           JVM implementation jar (okhttp-jvm) must be declared explicitly. -->
+      <dependency>
+        <groupId>com.squareup.okhttp3</groupId>
+        <artifactId>okhttp-jvm</artifactId>
+        <version>${okhttp.version}</version>
+      </dependency>
       <dependency>
         <groupId>com.squareup.okio</groupId>
         <artifactId>okio</artifactId>
@@ -106,6 +113,12 @@
       <groupId>io.minio</groupId>
       <artifactId>minio</artifactId>
       <version>${minio.version}</version>
+    </dependency>
+    <!-- okhttp 5.x (KMP): Maven doesn't resolve the JVM jar from Gradle metadata,
+         so declare okhttp-jvm explicitly to put okhttp3.RequestBody on the classpath. -->
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp-jvm</artifactId>
     </dependency>
     <!-- PDF processing -->
     <dependency>
