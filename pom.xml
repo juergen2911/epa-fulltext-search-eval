@@ -21,9 +21,22 @@
     <tika.version>3.2.2</tika.version>
     <tesseract.version>5.3.1-1.5.9</tesseract.version>
     <minio.version>8.6.0</minio.version>
+    <okhttp.version>5.1.0</okhttp.version>
+    <okio.version>3.15.0</okio.version>
   </properties>
   <dependencyManagement>
     <dependencies>
+      <!-- Override Quarkus BOM okhttp/okio versions to be compatible with MinIO 8.6.0 -->
+      <dependency>
+        <groupId>com.squareup.okhttp3</groupId>
+        <artifactId>okhttp</artifactId>
+        <version>${okhttp.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.squareup.okio</groupId>
+        <artifactId>okio</artifactId>
+        <version>${okio.version}</version>
+      </dependency>
       <dependency>
         <groupId>${quarkus.platform.group-id}</groupId>
         <artifactId>${quarkus.platform.artifact-id}</artifactId>
@@ -219,6 +232,11 @@
         <configuration>
           <javaParameters>true</javaParameters>
           <jvmTarget>17</jvmTarget>
+          <args>
+            <!-- OkIO 3.x (required by OkHttp 5.x/MinIO 8.6.0) is compiled with Kotlin 2.1 metadata.
+                 Our code never directly references OkIO, so metadata incompatibility is safe to skip. -->
+            <arg>-Xskip-metadata-version-check</arg>
+          </args>
           <compilerPlugins>
             <plugin>all-open</plugin>
           </compilerPlugins>
